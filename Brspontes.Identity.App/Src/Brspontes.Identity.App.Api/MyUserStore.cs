@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Brspontes.Identity.App.Api
 {
-    public class MyUserStore : IUserStore<MyUser>
+    public class MyUserStore : IUserStore<MyUser>, IUserPasswordStore<MyUser>
     {
         private readonly IOptions<ConnectionString> options;
 
@@ -127,6 +127,22 @@ namespace Brspontes.Identity.App.Api
             }
 
             return IdentityResult.Success;
+        }
+
+        public Task SetPasswordHashAsync(MyUser user, string passwordHash, CancellationToken cancellationToken)
+        {
+            user.PasswordHash = passwordHash;
+            return Task.CompletedTask;
+        }
+
+        public Task<string> GetPasswordHashAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash);
+        }
+
+        public Task<bool> HasPasswordAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash != null);
         }
     }
 }
