@@ -3,5 +3,11 @@
     ViewData["Title"] = "About";
 }
 
-<h1>About</h1>
+<h2></h2>
+<ul>
+    @foreach (var item in User.Claims)
+    {
+        <li><b>@item.Type</b>: @item.Value</li>
+    }
+</ul>
 

@@ -14,9 +14,9 @@ namespace Brspontes.Identity.App.Api.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<MyUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(UserManager<MyUser> userManager)
+        public HomeController(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
         }
@@ -56,7 +56,7 @@ namespace Brspontes.Identity.App.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             return View();
         }
