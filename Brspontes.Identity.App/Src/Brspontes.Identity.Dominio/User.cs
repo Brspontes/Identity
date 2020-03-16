@@ -7,7 +7,7 @@ namespace Brspontes.Identity.Dominio
 {
     public class User : IdentityUser<int>
     {
-        public string NomeComplet { get; set; }
+        public string NomeCompleto { get; set; }
         public string Member { get; set; } = "Member";
         public string OrgId { get; set; }
 
