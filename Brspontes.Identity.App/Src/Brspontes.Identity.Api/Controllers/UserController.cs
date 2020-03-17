@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Brspontes.Identity.Api.Dto;
 using Brspontes.Identity.Dominio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,7 @@ namespace Brspontes.Identity.Api.Controllers
         }
 
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLogin)
         {
             var user = await userManager.FindByNameAsync(userLogin.UserName);
@@ -74,6 +76,7 @@ namespace Brspontes.Identity.Api.Controllers
 
         // POST: api/User
         [HttpPost("Register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] UserDto model)
         {
             var user = await userManager.FindByNameAsync(model.UserName);
